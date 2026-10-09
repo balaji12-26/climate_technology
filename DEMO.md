@@ -20,12 +20,12 @@ git clone <repo-url> climate-response-optimizer
 cd climate-response-optimizer
 python --version                                  # 3.11+
 python -m venv .venv
-.\.venv\Scripts\python -m pip install -r backendequirements.txt
+.\.venv\Scripts\python -m pip install -r backend\requirements.txt
 cd frontend
 npm install
 npm run build
 cd ..
-.un.ps1                                        # serves http://127.0.0.1:8000
+.\run.ps1                                        # serves http://127.0.0.1:8000
 ```
 
 `run.ps1` builds the frontend itself if `frontend\dist` is missing, so the two npm commands are
