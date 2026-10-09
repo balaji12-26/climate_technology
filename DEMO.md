@@ -11,6 +11,34 @@ Start: `./run.ps1` (or `./run.sh`), open http://127.0.0.1:8000. Press **Reset sc
 | 3:30 | Compare tab | Equal split vs severity greedy vs CP-SAT, same inputs, same `evaluate()`. Assertion shown live: optimizer ≥ both. Point out ties honestly. |
 | 4:15 | Close | "Our prototype recalculates resource allocations under changing constraints and exposes the trade-offs behind each decision. We measure it against simpler strategies in a reproducible simulated scenario." |
 
+## Fresh setup (clean machine)
+
+Requires Python 3.11 or newer (built and tested on 3.14) and Node.js 18 or newer (tested on 22).
+
+```powershell
+git clone <repo-url> climate-response-optimizer
+cd climate-response-optimizer
+python --version                                  # 3.11+
+python -m venv .venv
+.\.venv\Scripts\python -m pip install -r backendequirements.txt
+cd frontend
+npm install
+npm run build
+cd ..
+.un.ps1                                        # serves http://127.0.0.1:8000
+```
+
+`run.ps1` builds the frontend itself if `frontend\dist` is missing, so the two npm commands are
+optional; they are listed so a build problem surfaces before demo time. On macOS/Linux use
+`python3 -m venv .venv`, `.venv/bin/python`, and `./run.sh`.
+
+Verify before the demo:
+
+```powershell
+cd backend
+..\.venv\Scripts\python -m pytest              # expect 35 passed
+```
+
 ## Fallbacks (all tested)
 - No network: map tiles missing but table + metrics are the proof; rainfall panel shows **cached** data; briefing uses the template.
 - No API key: briefing checkbox falls back to the template with a note.
