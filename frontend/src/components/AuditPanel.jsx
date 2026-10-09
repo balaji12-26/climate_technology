@@ -85,7 +85,7 @@ function ExplainResult({ e }) {
       <div className="kv">
         <span className="k">units / served / unmet</span><span className="v">{e.units} / {fmtInt(e.served)} / {fmtInt(e.unmet)} (demand {fmtInt(e.demand)})</span>
         <span className="k">capacity per unit</span><span className="v">{fmtInt(e.capacity_per_unit)} people · travel {fmt(e.travel_h, 2)} h · fuel {fmt(e.fuel_l_per_unit)} L</span>
-        <span className="k">objective coefficient</span><span className="v">urgency {e.urgency} × priority {e.priority} = {fmtInt(e.objective_coefficient_per_person)} / person</span>
+        <span className="k">objective coefficient</span><span className="v">urgency {e.urgency} × priority {e.priority} × 10 (integer scaling) = {fmtInt(e.objective_coefficient_per_person)} / person</span>
         <span className="k">contribution</span><span className="v">{fmtInt(e.objective_contribution)} ({fmt(e.objective_contribution_pct)}% of objective)</span>
         <span className="k">marginal value of last unit</span><span className="v">{fmtInt(e.marginal_value_last_unit)}</span>
         {r && r.status && r.value_lost !== undefined && (

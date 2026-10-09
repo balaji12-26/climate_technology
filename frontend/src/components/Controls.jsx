@@ -89,7 +89,7 @@ export default function Controls({ scenario, plan, busy, onOptimize, onDisrupt, 
                    onChange={(e) => { const n = { ...pri, [r]: Number(e.target.value) }; setPri(n); schedule(urg, n) }} />
           </div>
         ))}
-        <div className="hint">Policy weights in the objective Σ urgency × priority × people served. Fuel budget {scenario.fuel_budget_l} L · window {scenario.planning_window_h} h · max response {scenario.max_response_h} h.</div>
+        <div className="hint">Policy weights in the objective Σ urgency × priority × people served (urgency scaled ×10 internally for integer arithmetic; ratios and percentages are unaffected). Fuel budget {scenario.fuel_budget_l} L · window {scenario.planning_window_h} h · max response {scenario.max_response_h} h.</div>
       </div>
     </>
   )

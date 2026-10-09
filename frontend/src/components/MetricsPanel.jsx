@@ -28,7 +28,7 @@ export default function MetricsPanel({ plan }) {
           {plan.unreachable_zones.length > 0 && <div style={{ color: 'var(--bad)' }}>Unreachable: {plan.unreachable_zones.join(', ')}</div>}
         </div>
       )}
-      <div className="hint" style={{ marginTop: 6 }}>Objective: <span style={{ fontFamily: 'var(--mono)' }}>{fmtInt(m.objective)}</span> · solver {m.solver_status} in {m.solve_ms} ms{plan.churn !== null && plan.churn !== undefined ? ` · churn ${plan.churn} unit-moves` : ''}</div>
+      <div className="hint" style={{ marginTop: 6 }}>Objective (×10 integer scaling): <span style={{ fontFamily: 'var(--mono)' }}>{fmtInt(m.objective)}</span> · solver {m.solver_status} in {m.solve_ms} ms{plan.churn !== null && plan.churn !== undefined ? ` · churn ${plan.churn} unit-moves` : ''}</div>
     </div>
   )
 }
