@@ -1,0 +1,53 @@
+{
+  "name": "Kerala-inspired flood scenario (SYNTHETIC)",
+  "planning_window_h": 12, "max_response_h": 6, "fuel_budget_l": 2000,
+  "deep_water_threshold_m": 2.5, "critical_urgency": 60,
+  "depot": {"id": "D", "name": "State EOC Kochi", "coordinates": [9.9312, 76.2673]},
+  "junctions": [
+    {"id": "J1", "name": "Inland detour junction", "coordinates": [10.115, 76.477]},
+    {"id": "J2", "name": "Kottayam", "coordinates": [9.5916, 76.5222]},
+    {"id": "J3", "name": "Alappuzha", "coordinates": [9.4981, 76.3388]}
+  ],
+  "zones": [
+    {"id":"Z1","name":"Aluva","coordinates":[10.1004,76.3570],"population":48000,
+     "stranded":1500,"patients":120,"displaced":20000,"flood_depth_m":3.2,
+     "infrastructure_damage":0.8,"medical_urgency":0.9,"access_difficulty":0.6,"vulnerable_pct":0.22},
+    {"id":"Z2","name":"Chengannur","coordinates":[9.3162,76.6156],"population":35000,
+     "stranded":2500,"patients":90,"displaced":18000,"flood_depth_m":2.8,
+     "infrastructure_damage":0.7,"medical_urgency":0.6,"access_difficulty":0.9,"vulnerable_pct":0.28},
+    {"id":"Z3","name":"Chalakudy","coordinates":[10.3000,76.3300],"population":28000,
+     "stranded":600,"patients":40,"displaced":16000,"flood_depth_m":1.5,
+     "infrastructure_damage":0.5,"medical_urgency":0.3,"access_difficulty":0.4,"vulnerable_pct":0.18},
+    {"id":"Z4","name":"Thiruvalla","coordinates":[9.3839,76.5745],"population":22000,
+     "stranded":300,"patients":30,"displaced":12000,"flood_depth_m":0.8,
+     "infrastructure_damage":0.2,"medical_urgency":0.2,"access_difficulty":0.3,"vulnerable_pct":0.20},
+    {"id":"Z5","name":"Pandanad","coordinates":[9.4500,76.5400],"population":15000,
+     "stranded":1200,"patients":25,"displaced":6000,"flood_depth_m":2.0,
+     "infrastructure_damage":0.4,"medical_urgency":0.3,"access_difficulty":0.8,"vulnerable_pct":0.32}
+  ],
+  "edges": [
+    {"a":"D","b":"Z1","km":20}, {"a":"Z1","b":"Z3","km":30,"id":"B1","name":"B1: Chalakudy river bridge"},
+    {"a":"Z1","b":"J1","km":15}, {"a":"J1","b":"Z3","km":75},
+    {"a":"D","b":"J2","km":65}, {"a":"J2","b":"Z4","km":27},
+    {"a":"Z4","b":"Z2","km":13}, {"a":"Z2","b":"Z5","km":6},
+    {"a":"Z4","b":"Z5","km":15}, {"a":"D","b":"J3","km":55}, {"a":"J3","b":"Z5","km":40}
+  ],
+  "resources": {
+    "rescue_boat":  {"count":24,"road_speed_kmh":30,"setup_h":0.5,"people_per_h":15,
+                     "fuel_l_per_km":0.30,"fuel_l_per_op_h":4.0},
+    "medical_team": {"count":5,"road_speed_kmh":40,"setup_h":0.5,"patients_per_h":5,
+                     "fuel_l_per_km":0.15},
+    "supply_truck": {"count":8,"road_speed_kmh":30,"payload_kg":4000,"unload_h":1.0,
+                     "kg_per_person":1.25,"fuel_l_per_km":0.35}
+  },
+  "priority_weights": {"rescue_boat":100,"medical_team":200,"supply_truck":10},
+  "urgency_weights": {"depth":0.25,"infrastructure":0.20,"medical":0.25,"access":0.15,"vulnerable":0.15},
+  "disruptions": [
+    {"id":"D1","description":"Chalakudy river bridge (Z1-Z3) collapses","effect":{"close_edges":["B1"]}},
+    {"id":"D2","description":"Thiruvalla hospital floods","effect":{"zone":"Z4","patients_add":150,
+      "infrastructure_damage":0.6,"medical_urgency":0.85}},
+    {"id":"D3","description":"Supply truck breaks down","effect":{"resource":"supply_truck","count_add":-1}},
+    {"id":"D4","description":"Fuel shortage at depot","effect":{"fuel_budget_multiplier":0.6}},
+    {"id":"D5","description":"Pandanad cut off","effect":{"close_edges_between":[["Z2","Z5"],["Z4","Z5"],["J3","Z5"]]}}
+  ]
+}

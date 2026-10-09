@@ -1,0 +1,59 @@
+{
+ "source": "live",
+ "provider": "Open-Meteo",
+ "fetched_at": "2026-10-09T10:02:40.375670+00:00",
+ "zones": [
+  {
+   "zone": "Z1",
+   "name": "Aluva",
+   "coordinates": [
+    10.1004,
+    76.357
+   ],
+   "rain_mm_24h": 11.5,
+   "depth_add_m": 0.12
+  },
+  {
+   "zone": "Z2",
+   "name": "Chengannur",
+   "coordinates": [
+    9.3162,
+    76.6156
+   ],
+   "rain_mm_24h": 9.4,
+   "depth_add_m": 0.09
+  },
+  {
+   "zone": "Z3",
+   "name": "Chalakudy",
+   "coordinates": [
+    10.3,
+    76.33
+   ],
+   "rain_mm_24h": 10.8,
+   "depth_add_m": 0.11
+  },
+  {
+   "zone": "Z4",
+   "name": "Thiruvalla",
+   "coordinates": [
+    9.3839,
+    76.5745
+   ],
+   "rain_mm_24h": 12.5,
+   "depth_add_m": 0.12
+  },
+  {
+   "zone": "Z5",
+   "name": "Pandanad",
+   "coordinates": [
+    9.45,
+    76.54
+   ],
+   "rain_mm_24h": 6.7,
+   "depth_add_m": 0.07
+  }
+ ],
+ "rule": "+0.1 m flood depth per 10 mm of 24-h rain, capped at +1.0 m",
+ "latency_ms": 2137
+}
